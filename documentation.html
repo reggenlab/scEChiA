@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Graph Wavelet Denoising</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="documentation.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Documentation</a>
+    <a href="faq.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">FAQ</a>
+    <a href="contact.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Contact</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="documentation.html" class="w3-bar-item w3-button w3-padding-large">Documentation</a>
+    <a href="faq.html" class="w3-bar-item w3-button w3-padding-large">FAQ</a>
+    <a href="contact.html" class="w3-bar-item w3-button w3-padding-large">Contact</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-white w3-center" style="padding:100px 8px">
+  <img style="width:1000px;height:300px;" src="new_fig.jpg" alt="no">
+  <!----<button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>--->
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-4 w3-container">
+<h5 class="w3-padding-2">Go to : <a href="./documentation.html#diff_centrality"> Differential Centrality</a> <o:p>&nbsp; &nbsp;</o:p> </a> <a href="./documentation.html#python">Denoising</a> 
+&nbsp; &nbsp;</o:p> </a> <a href="./documentation.html#ROC">Overlapping with GOLDENSET</a></b></h5>
+<h5 class="w3-padding-2"><b> <a href="document.pdf"> Download manual in pdf </a></b></h5>
+</div>
+
+<div class="w3-row-padding w3-padding-4 w3-container" id="python">
+      <h1>Graph Wavelet Based Denoising Gene Expression Data Python Code</h1>
+      <h5 class="w3-padding-4">"# NetWave"</h5>
+      <h5 class="w3-padding-4">One needs to have python 3.0+ installed in their machine. Following are the dependencies of the code :</h5>
+      <h5 class="w3-padding-4">Numpy, Pandas, Pygsp, scipy, sklearn</h5>
+      <h5 class="w3-padding-4">R dependencies :</h5>
+       <h5 class="w3-padding-4">minet,methods,GENIE3,propr</h5>
+      <h5 class="w3-padding-4">You have to download python code in your local machine/server.</h5>
+      <h5 class="w3-padding-4">For execution you have to pass filename of expression csv as a input file.</h5> 
+      <h5 class="w3-padding-4">Expression csv file should not contain header and genes i.e. it consist of only data on which filtering is going to perform.</h5>
+      <h5 class="w3-padding-4">Row represents samples and column represent genes in csv file.</h5>
+      <h5 class="w3-padding-4">Single cell data should be fpkm.</h5>
+      <h5 class="w3-padding-4">USE THE FOLLOWING COMMANDS :</h5>
+      <h5 class="w3-padding-4">```bash</h5>
+      <h5 class="w3-padding-4">python3 NetWave.py -e <exp_path> -f (filter_method) -t (data_type) -k (KNN) -p (cutoff(wavelet)) -o (output_path)</h5>		
+      <h5 class="w3-padding-4">e.g.</h5>
+      <h5 class="w3-padding-4">python3 NetWave.py -e net1.txt -f wavelet -t bulk -k 40 -p 70 -o net1_output.txt</h5>
+      <h5 class="w3-padding-4">```</h5>
+      <h5 class="w3-padding-4">'net1.txt' consist of expression data to be filtered.</h5>
+
+      <h5 class="w3-padding-4">Regarding each iput parameter :</h5>
+      <h5 class="w3-padding-4">-e expression Data : Path to expression data </h5>
+      <h5 class="w3-padding-4">-o output path : Path to save filterd expression</h5>
+      <h5 class="w3-padding-4">-f : Filter method to use (Options are : chebychev, wavelet, SureShrink, BayesShrink, Gaussian_MDL_hardthresh)</h5>
+      <h5 class="w3-padding-4">-t : data type (Options : single_cell / bulk)</h5>
+      <h5 class="w3-padding-4">-k : KNN value (min(genes,samples) in expression data)</h5>
+      <h5 class="w3-padding-4">-p : Percentile Frequency cutoff</h5>
+</div>
+
+<div class="w3-row-padding w3-padding-4 w3-container" id="diff_centrality">
+<h1>Differential Centrality Python Code</h1>
+<h5 class="w3-padding-4">"# centrality.py" </h5>
+<h5 class="w3-padding-4">One needs to have python 3.0+ installed in their machine. Following are the dependencies of the code :</h5>
+<h5 class="w3-padding-4">Numpy, Pandas, Pygsp, scipy, sklearn, networkx</h5>
+<h5 class="w3-padding-4">R dependencies : minet,methods,GENIE3,propr</h5>
+
+<h5 class="w3-padding-4">You have to download python code in your local machine/server.</h5>
+<h5 class="w3-padding-4">For execution you have to pass filename of  young and old filtered expression csv as a input file. </h5>
+<h5 class="w3-padding-4">Expression csv file should not contain header and genes i.e. it consist of only data on which filtering is going to perform. </h5>
+<h5 class="w3-padding-4">Row represents samples and column represent genes in csv file. </h5>
+
+<h5 class="w3-padding-4">User gets :::</h5>
+<h5 class="w3-padding-4">1. Differential degree and pagerank for old and young.</h5>
+<h5 class="w3-padding-4">2. centrality (degree, pagerank, betweenness, closeness & eigen values) for both young and old in separate files by the default names "young_centrality.txt" and "old_centrality.txt"</h5>
+
+<h5 class="w3-padding-4">USE THE FOLLOWING COMMANDS :</h5>
+<h5 class="w3-padding-4">```bash</h5>
+<h5 class="w3-padding-4">python3 centrality.py -y (filtered_young) -o (filtered_old) -g (genes_list) -c (correlation_method) -r (result_path) -t (top_edges)	</h5>	
+<h5 class="w3-padding-4">e.g.</h5>
+<h5 class="w3-padding-4">python3 centrality.py -y exp_young.txt -o exp_old.txt -g genes.txt -c pearson -r diff_output.txt -t 100000</h5>
+<h5 class="w3-padding-4">```</h5>
+<h5 class="w3-padding-4">'exp_young.txt' consist of filtered young expression data, 'exp_old.txt' consist of filtered old expression data.</h5>
+
+<h5 class="w3-padding-4">Regarding each iput parameter :</h5>
+<h5 class="w3-padding-4">-y Filtered young expression Data : Path to young filtered expression data </h5>
+<h5 class="w3-padding-4">-o Filtered old expression Data : Path to Old filtered expression data </h5>
+<h5 class="w3-padding-4">-g List of genes in expression Data : Path to Gene list</h5>
+<h5 class="w3-padding-4">-r result_path : Path to save differential centrality result</h5>
+<h5 class="w3-padding-4">-c correlation_method: Options : pearson, spearman, aracne, genie3, phi, rho</h5>
+<h5 class="w3-padding-4">-t top_edges : Number of Top Edges to select to build network</h5>
+
+</div>
+
+<div class="w3-row-padding w3-padding-4 w3-container" id="ROC">
+<h1>Differential Centrality Python Code</h1>
+<h5 class="w3-padding-4">"# NetWave Python" </h5>
+
+
+<h5 class="w3-padding-4">One needs to have python 3.0+ installed in their machine. Following are the dependencies of the code :</h5>
+<h5 class="w3-padding-4">Numpy, Pandas, Pygsp, scipy, sklearn</h5>
+<h5 class="w3-padding-4">R dependencies :</h5>
+<h5 class="w3-padding-4">minet,methods,GENIE3,propr</h5>
+
+<h5 class="w3-padding-4">You have to download python code in your local machine/server.</h5>
+<h5 class="w3-padding-4">For execution you have to pass filename of expression csv as a input file. </h5>
+<h5 class="w3-padding-4">Expression csv file does not contain header and genes i.e. it consist of only data on which filtering is going to perform.</h5>
+<h5 class="w3-padding-4">Row represents samples and column reprent genes in csv file.</h5>
+
+
+<h5 class="w3-padding-4">USE THE FOLLOWING COMMANDS :</h5>
+<h5 class="w3-padding-4">```bash</h5>
+<h5 class="w3-padding-4">python3 NetWave.py -e <exp_path> -g <goldset_path> -f <filter_method> -c <correlation_method> -t <data_type> -k <KNN> -d <dx> -p <cutoff(wavelet)></h5>
+		
+<h5 class="w3-padding-4">e.g.</h5>
+<h5 class="w3-padding-4">python3 NetWave.py -e net1.txt -g goldset_net1.txt -f wavelet -c pearson -t bulk -k 40 -d 10000 -p 70</h5>
+<h5 class="w3-padding-4">```</h5>
+<h5 class="w3-padding-4">'net1.txt' consist of expression data to be filtered.</h5>
+
+<h5 class="w3-padding-4">Regarding each iput parameter :</h5>
+<h5 class="w3-padding-4">-e <expression Data> : Path to expression data </h5>
+<h5 class="w3-padding-4">-g <golden set> : Path to golden set</h5>
+<h5 class="w3-padding-4">-f : Filter method to use (Options are : chebychev, wavelet, SureShrink, BayesShrink, Gaussian_MDL_hardthresh)</h5>
+<h5 class="w3-padding-4">-c : correlation method to use (Options : pearson, spearman, aracne, genie3, phi, rho)</h5>
+<h5 class="w3-padding-4">-t : data type (Options : single_cell / bulk)</h5>
+<h5 class="w3-padding-4">-k : KNN value (<min(genes,samples) in expression data)</h5>
+<h5 class="w3-padding-4">-d : dx for AUC</h5>
+<h5 class="w3-padding-4">-p : Percentile Frequency cutoff</h5>
+</div>
+
+
+
+<!----<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
+</div>---->
+
+<!-- Footer -->
+<!----<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>---->
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
